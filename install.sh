@@ -261,12 +261,10 @@ fi
 
 if [ -f /etc/debian_version ]; then
 	PreInstallCheck
-	if [ "$CFG_MULTISERVER" == "no" ]; then
-		AskQuestions
-	else
-		source $APWD/distros/$DISTRO/askquestions_multiserver.sh
-		AskQuestionsMultiserver
-	fi
+	
+	source $APWD/distros/$DISTRO/askquestions_multiserver.sh
+	AskQuestionsMultiserver
+	
 	InstallBasics 
 	InstallSQLServer 
 	if [ "$CFG_SETUP_WEB" == "yes" ] || [ "$CFG_MULTISERVER" == "no" ]; then

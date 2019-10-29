@@ -16,12 +16,7 @@ AskQuestionsMultiserver(){
 		do
 			_SQLClient=$(whiptail --title "SQL Server" --backtitle "$WT_BACKTITLE" --nocancel --radiolist "Please select SQL Client type" 10 50 2 "MySQL" "(default)" ON "MariaDB" "" OFF 3>&1 1>&2 2>&3)
 		done
-		
-		if [ "$_SQLClient" == "MySQL" ]; then
-			apt_install mysql-client
-		elif [ "$_SQLClient" == "MariaDB" ]; then
-			apt_install mariadb-client
-		fi
+		apt_install mariadb-client
 	fi
 
 	while [[ ! "$CFG_SQLSERVER" =~ $RE ]]
@@ -180,6 +175,7 @@ AskQuestionsMultiserver(){
 	while [[ ! "$SSL_COUNTRY" =~ $RE ]]
 	do
 		SSL_COUNTRY=$(whiptail --title "SSL Country" --backtitle "$WT_BACKTITLE" --inputbox "SSL Configuration - Country Name (2 letter code) (ex. EN)" --nocancel 10 50 "${LANG:3:2}" 3>&1 1>&2 2>&3)
+		echo $SSL_COUNTRY;
 	done
 
 	while [[ ! "$SSL_STATE" =~ $RE ]]
